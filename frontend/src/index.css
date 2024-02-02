@@ -1,0 +1,42 @@
+:root {
+    --primary-color: #148091;
+    --secondary-color: #e75480;
+}
+
+body {
+    background-color: #f1f1f1;
+    margin: 0;
+}
+
+header {
+    background-color: #fff;
+    border-radius: 10px;
+    border: 0.5px solid #e1e1e1;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+header .container {
+    font-family: 'Roboto', sans-serif;
+    max-width: 1400px;
+    display: flex;
+    margin: 0 auto;
+    padding: 10px 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header a {
+    text-decoration: none;
+    
+    color: #345;
+}
+
+header a:hover {
+    color: var(--primary-color);
+}
+
+.pages {
+    max-width: 1400px;
+    padding: 20px;
+    margin: 0 auto;
+}
