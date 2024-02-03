@@ -2,6 +2,7 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const express = require('express');
 const todosRoute = require('./routes/todos');
+const cors = require('cors');
 
 const app = express();
 
@@ -11,6 +12,7 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use(cors({ origin: 'http://localhost:3000' }));
 app.use('/api/todos', todosRoute);
 
 const port = process.env.PORT || 3300;
