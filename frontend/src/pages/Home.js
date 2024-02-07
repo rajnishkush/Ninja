@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Habit from "../components/Habit";
 import Loader from "../components/Loader";
 import ErrorPage from "../components/ErrorPage";
+import HabitForm from "../components/HabitForm";
 
 const Home = () => {
   const [todos, setTodos] = useState(null);
@@ -42,6 +43,7 @@ const Home = () => {
           ))
         }
       </div>
+      <HabitForm />
     </div>
   );
 }

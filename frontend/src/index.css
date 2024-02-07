@@ -6,9 +6,13 @@
 body {
     background-color: #f1f1f1;
     margin: 0;
+    font-family: 'Poppins', sans-serif;
 }
 
 header {
+    top: 0;
+    z-index: 100;
+    position: sticky;
     background-color: #fff;
     border-radius: 10px;
     border: 0.5px solid #e1e1e1;
@@ -27,16 +31,21 @@ header .container {
 
 header a {
     text-decoration: none;
-    
     color: #345;
 }
 
 header a:hover {
-    color: var(--primary-color);
+    color: var(--secondary-color);
 }
 
 .pages {
     max-width: 1400px;
     padding: 20px;
     margin: 0 auto;
+}
+
+.home {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 100px;
 }
