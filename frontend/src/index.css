@@ -46,6 +46,22 @@ header a:hover {
 
 .home {
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 2fr 1fr;
     gap: 100px;
+}
+
+@media screen and (max-width: 625px) {
+    .home {
+        grid-template-columns: 1fr;
+    }
+
+    .home> :nth-child(2) {
+        order: -1;
+    }
+}
+
+@media screen and (min-width:626px) and (max-width: 950px) {
+    .home {
+        grid-template-columns: 2fr 2fr;
+    }
 }
