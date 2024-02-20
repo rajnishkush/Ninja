@@ -1,35 +1,37 @@
-import { useReducer } from 'react';
+import { useReducer, useContext } from 'react';
+import HabitContext from '../context/HabitContext';
 import '../styles/HabitForm.css';
 
 const formReducer = (state, action) => {
     switch (action.type) {
-        case 'SET_TITLE':
-            return { ...state, title: action.payload };
-        case 'SET_REPS':
-            return { ...state, reps: action.payload };
         case 'SET_ERROR':
             return { ...state, error: action.payload };
         case 'SET_SUCCESS':
             return { ...state, success: action.payload };
         default:
+            return state;
     }
 }
 
 const initalState = {
-    title: '',
-    reps: '',
     error: null,
     success: null
 };
 
 const HabitForm = () => {
+    const { dataState, dataDispatch } = useContext(HabitContext);
     const [state, dispatch] = useReducer(formReducer, initalState);
+
+    const changeHandler = (e) => {
+        const { name, value } = e.target;
+        dataDispatch({ type: `SET_${name.toUpperCase()}`, payload: value })
+    }
 
     const submitHandler = async (e) => {
         e.preventDefault();
         const newHabit = {
-            title: state.title,
-            reps: state.reps
+            title: dataState.title,
+            reps: dataState.reps
         };
         const response = await fetch('http://localhost:3400/api/todos', {
             method: 'POST',
@@ -45,16 +47,11 @@ const HabitForm = () => {
             dispatch({ type: 'SET_ERROR', payload: json.message });
         }
         else {
-            dispatch({ type: 'SET_TITLE', payload: '' })
-            dispatch({ type: 'SET_REPS', payload: '' })
+            dataDispatch({ type: 'SET_TITLE', payload: '' })
+            dataDispatch({ type: 'SET_REPS', payload: '' })
             dispatch({ type: 'SET_ERROR', payload: null })
             dispatch({ type: 'SET_SUCCESS', payload: 'New habit added!' });
         }
-    }
-
-    const changeHandler = (e) => {
-        const { name, value } = e.target;
-        dispatch({ type: `SET_${name.toUpperCase()}`, payload: value })
     }
 
     return (
@@ -64,14 +61,14 @@ const HabitForm = () => {
             <input
                 type="text"
                 name='title'
-                value={state.title}
+                value={dataState.title}
                 onChange={changeHandler}
             />
             <label>Reps:</label>
             <input
                 type="text"
                 name='reps'
-                value={state.reps}
+                value={dataState.reps}
                 onChange={changeHandler}
             />
             <button type="submit">Add Habit</button>

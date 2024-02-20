@@ -1,45 +1,64 @@
-import { useState, useEffect } from "react";
+import { useReducer, useEffect, useContext } from "react";
+import HabitContext from "../context/HabitContext";
 import Habit from "../components/Habit";
 import Loader from "../components/Loader";
 import ErrorPage from "../components/ErrorPage";
 import HabitForm from "../components/HabitForm";
 
+const formReducer = (state, action) => {
+  switch (action.type) {
+    case 'SET_HABITS':
+      return { ...state, habits: action.payload };
+    case 'SET_ERROR':
+      return { ...state, error: action.payload };
+    case 'SET_LOADING':
+      return { ...state, loading: action.payload };
+    default:
+      return state;
+  }
+}
+
+const initalState = {
+  habits: null,
+  error: null,
+  loading: true
+}
+
 const Home = () => {
-  const [todos, setTodos] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const { dataState } = useContext(HabitContext);
+  const [state, dispatch] = useReducer(formReducer, initalState);
 
   useEffect(() => {
-    const fetchTodos = async () => {
+    const fetchHabits = async () => {
       try {
         const response = await fetch('http://localhost:3400/api/todos');
         const data = await response.json();
         if (response.ok) {
-          setTodos(data);
+          dispatch({ type: 'SET_HABITS', payload: data });
         }
         else {
           throw new Error(data.message);
         }
       }
       catch (error) {
-        setError(error.message);
+        dispatch({ type: 'SET_ERROR', payload: error.message });
       }
       finally {
-        setLoading(false);
+        dispatch({ type: 'SET_LOADING', payload: false });
       }
     };
-    fetchTodos();
-  }, []);
+    fetchHabits();
+  }, [dataState]);
 
-  if (loading) return <Loader />;
-  if (error) return <ErrorPage error={error} />;
+  if (state.loading) return <Loader />;
+  if (state.error) return <ErrorPage error={state.error} />;
 
   return (
     <div className="home">
-      <div className="todos">
+      <div className="habits">
         {
-          todos && todos.map(todo => (
-            <Habit todo={todo} key={todo._id} />
+          state.habits && state.habits.map(habit => (
+            <Habit habit={habit} key={habit._id} />
           ))
         }
       </div>

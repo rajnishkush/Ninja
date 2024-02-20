@@ -1,4 +1,4 @@
-.todo {
+.habit {
     background-color: #fff;
     border-radius: 5px;
     margin: 20px auto;
@@ -7,13 +7,13 @@
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
-.todo h2 {
+.habit h2 {
     font-size: 1.4em;
     margin: 10px 0;
     color: var(--primary-color);
 }
 
-.todo p {
+.habit p {
     font-size: 0.9em;
     margin: 10px 0;
     color: #557;
