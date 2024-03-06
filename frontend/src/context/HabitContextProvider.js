@@ -7,6 +7,8 @@ const formReducer = (state, action) => {
             return { ...state, title: action.payload };
         case 'SET_REPS':
             return { ...state, reps: action.payload };
+        case 'DELETE_HABIT':
+            return { title: '', reps: '' };
         default:
             return state;
     }
