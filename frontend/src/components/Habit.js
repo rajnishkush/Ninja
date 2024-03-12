@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import '../styles/Habit.css';
+import Date from './Date';
 import HabitContext from '../context/HabitContext';
 
 const Habit = ({ habit }) => {
@@ -16,7 +17,7 @@ const Habit = ({ habit }) => {
         <div className="habit" key={habit._id}>
             <h2>{habit.title}</h2>
             <p>Reps: {habit.reps}</p>
-            <p>{habit.createdAt}</p>
+            <Date date={habit.createdAt} />
             <span className="delete" onClick={deleteHandler}>X</span>
         </div>
     );
