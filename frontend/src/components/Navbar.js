@@ -1,12 +1,11 @@
-import { Link } from 'react-router-dom';
+import ToggleBtn from "./ToggleBtn";
 
 const Navbar = () => {
     return (
         <header>
             <div className="container">
-                <Link to="/">
-                    <h2>Habit Tracker</h2>
-                </Link>
+                <h2>Habit Tracker</h2>
+                <ToggleBtn />
             </div>
         </header>
     );

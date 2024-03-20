@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useState, useReducer } from "react";
 import HabitContext from "./HabitContext";
 
 const formReducer = (state, action) => {
@@ -20,8 +20,9 @@ const HabitContextProvider = ({ children }) => {
         reps: ''
     };
     const [dataState, dataDispatch] = useReducer(formReducer, initalState);
+    const [darkMode, setDarkMode] = useState(false);
     return (
-        <HabitContext.Provider value={{ dataState, dataDispatch }}>
+        <HabitContext.Provider value={{ dataState, dataDispatch, darkMode, setDarkMode }}>
             {children}
         </HabitContext.Provider>
     )

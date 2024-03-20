@@ -1,10 +1,22 @@
 :root {
-    --primary-color: #148091;
+    --primary-color: #37b3c6;
     --secondary-color: #e75480;
+    --background-color: #f1f1f1;
+    --header-color: #fff;
+    --font-color: #333;
+}
+
+.dark-theme {
+    --primary-color: #e75480;
+    --secondary-color: #37b3c6;
+    --background-color: #1f1f1f;
+    --header-color: #333;
+    --font-color: #fff;
 }
 
 body {
-    background-color: #f1f1f1;
+    color: var(--font-color);
+    background-color: var(--background-color);
     margin: 0;
     font-family: 'Poppins', sans-serif;
 }
@@ -13,7 +25,7 @@ header {
     top: 0;
     z-index: 100;
     position: sticky;
-    background-color: #fff;
+    background-color: var(--header-color);
     border-radius: 10px;
     border: 0.5px solid #e1e1e1;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -29,12 +41,12 @@ header .container {
     justify-content: space-between;
 }
 
-header a {
-    text-decoration: none;
-    color: #345;
+header h2 {
+    color: var(--font-color);
 }
 
-header a:hover {
+header h2:hover {
+    cursor: pointer;
     color: var(--secondary-color);
 }
 

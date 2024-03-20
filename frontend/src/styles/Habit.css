@@ -27,6 +27,6 @@
     color: #fff;
     text-align: center;
     border-radius: 2px;
-    background-color: #F05959;
+    background-color: var(--primary-color);
     cursor: pointer;
 }
